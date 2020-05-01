@@ -29,21 +29,6 @@ def text_treat(text):
     text = link(text)
     return(text)
 
-def date_suffix(time):
-    b = datetime.datetime.fromtimestamp(time).strftime("%B")
-    y = datetime.datetime.fromtimestamp(time).strftime("%Y")
-    d = datetime.datetime.fromtimestamp(time).strftime("%d")
-    if d == "1":
-        d = d + "st"
-    elif d == "2":
-        d = d + "nd"
-    elif d == "3":
-        d = d + "rd"
-    else:
-        d = d + "th"
-    ret = b + " " + d + ", " + y
-    return(ret)
-
 def main():
     f = open(args.f, 'r')
     json_data = json.load(f)
@@ -51,11 +36,6 @@ def main():
     for p in json_data["pages"]:
         #title
         title = p["title"]
-
-        #created date
-        #ct = date_suffix(p["created"])
-        #ct = "    - " + "[[" + ct + "]]"
-        #header = "".join(["- Metadata", "\n", ct, "\n"])
 
         #main text
         text = text_treat(p["lines"])
